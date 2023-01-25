@@ -1,0 +1,89 @@
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| cfaculty           |
+| cstudents          |
+| faculties          |
+| faculty            |
+| facultys           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sse                |
+| student            |
+| students           |
+| subject            |
+| sys                |
+| thestudents        |
++--------------------+
+14 rows in set (0.00 sec)
+
+mysql> use students;
+Database changed
+mysql> create table students(regno int(3),name varchar(15),gender varchar(1),dob date,mobileno int(10),city varchar(15));
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+
+mysql> desc students;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| regno    | int         | YES  |     | NULL    |       |
+| name     | varchar(15) | YES  |     | NULL    |       |
+| gender   | varchar(1)  | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| mobileno | int         | YES  |     | NULL    |       |
+| city     | varchar(15) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> alter table students
+    -> ADD department varchar(25);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table students
+    -> DROP COLUMN city;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc students;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int         | YES  |     | NULL    |       |
+| name       | varchar(15) | YES  |     | NULL    |       |
+| gender     | varchar(1)  | YES  |     | NULL    |       |
+| dob        | date        | YES  |     | NULL    |       |
+| mobileno   | int         | YES  |     | NULL    |       |
+| department | varchar(25) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> TRUNCATE table students;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SELECT * from students;
+Empty set (0.00 sec)
+
+mysql> desc students;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int         | YES  |     | NULL    |       |
+| name       | varchar(15) | YES  |     | NULL    |       |
+| gender     | varchar(1)  | YES  |     | NULL    |       |
+| dob        | date        | YES  |     | NULL    |       |
+| mobileno   | int         | YES  |     | NULL    |       |
+| department | varchar(25) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into the students values('335','sravani','female','09-06-2000','6301050406','EEE');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'students values('335','sravani','female','09-06-2000','6301050406','EEE')' at line 1
+mysql> insert into the students values('335','sravani','F','09-06-200','93023456','EEE');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'students values('335','sravani','F','09-06-200','93023456','EEE')' at line 1
+mysql> insert into the students values('335','sravani','F','2005-06-07','93023456','EEE');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'students values('335','sravani','F','2005-06-07','93023456','EEE')' at line 1
+mysql> insert into students values('335
