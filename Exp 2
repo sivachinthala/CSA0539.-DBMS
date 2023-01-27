@@ -1,0 +1,39 @@
+mysql> desc student_marksheets;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| registerno  | int      | YES  |     | NULL    |       |
+| studentname | char(20) | YES  |     | NULL    |       |
+| studentage  | int      | YES  |     | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student_marksheets add primary key(studentage);
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student_marksheets;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| registerno  | int      | YES  |     | NULL    |       |
+| studentname | char(20) | YES  |     | NULL    |       |
+| studentage  | int      | NO   | PRI | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table student_marksheets add primary key(studentname);
+ERROR 1068 (42000): Multiple primary key defined
+mysql> alter table student_marksheets add unique key(studentname);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student_marksheets;
++-------------+----------+------+-----+---------+-------+
+| Field       | Type     | Null | Key | Default | Extra |
++-------------+----------+------+-----+---------+-------+
+| registerno  | int      | YES  |     | NULL    |       |
+| studentname | char(20) | YES  | UNI | NULL    |       |
+| studentage  | int      | NO   | PRI | NULL    |       |
++-------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
