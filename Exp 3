@@ -1,0 +1,42 @@
+mysql> insert into student_marksheets values(192110285,'sudarshan',18),(192110283,'bhargav',19),(192110284,'rakesh',21);
+Query OK, 3 rows affected (0.03 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_marksheets;
++------------+-------------+------------+
+| registerno | studentname | studentage |
++------------+-------------+------------+
+|  192110285 | sudarshan   |         18 |
+|  192110283 | bhargav     |         19 |
+|  192110284 | rakesh      |         21 |
++------------+-------------+------------+
+3 rows in set (0.00 sec)
+mysql> update student_marksheets
+    -> set studentname= 'harsha'
+    -> where registerno=192110284;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student_marksheets;
++------------+-------------+------------+
+| registerno | studentname | studentage |
++------------+-------------+------------+
+|  192110285 | sudarshan   |         18 |
+|  192110283 | bhargav     |         19 |
+|  192110284 | harsha      |         21 |
++------------+-------------+------------+
+3 rows in set (0.00 sec)
+mysql> delete from student_marksheets
+    -> where studentage=18;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student_marksheets;
++------------+-------------+------------+
+| registerno | studentname | studentage |
++------------+-------------+------------+
+|  192110286 | nithish     |         19 |
+|  192110284 | bhargav     |         21 |
++------------+-------------+------------+
+2 rows in set (0.00 sec)
+mysql> truncate table student_marksheets;
+Query OK, 0 rows affected (0.06 sec)
