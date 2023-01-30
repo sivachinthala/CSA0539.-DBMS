@@ -1,0 +1,53 @@
+mysql> create table course(regno int(3),name varchar(15),totalcourse int(3),completedcourse int(3),arrears int(3));
+Query OK, 0 rows affected, 4 warnings (0.03 sec)
+
+mysql> insert into course values('123','hansika','38','14','0');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values('124','chay','38','14','1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course values('125','sravs','38','15','0');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into course values('126','yash','38','16','2');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into course values('127','vivek','38','16','1');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from course;
++-------+---------+-------------+-----------------+---------+
+| regno | name    | totalcourse | completedcourse | arrears |
++-------+---------+-------------+-----------------+---------+
+|   123 | hansika |          38 |              14 |       0 |
+|   124 | chay    |          38 |              14 |       1 |
+|   125 | sravs   |          38 |              15 |       0 |
+|   126 | yash    |          38 |              16 |       2 |
+|   127 | vivek   |          38 |              16 |       1 |
++-------+---------+-------------+-----------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from course where regn in(select regno from course where completedcourse>14);
+ERROR 1054 (42S22): Unknown column 'regn' in 'IN/ALL/ANY subquery'
+mysql> select * from course where regno in(select regno from course where completedcourse>14);
++-------+-------+-------------+-----------------+---------+
+| regno | name  | totalcourse | completedcourse | arrears |
++-------+-------+-------------+-----------------+---------+
+|   125 | sravs |          38 |              15 |       0 |
+|   126 | yash  |          38 |              16 |       2 |
+|   127 | vivek |          38 |              16 |       1 |
++-------+-------+-------------+-----------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select regno,name,completedcourse from course where arrears>0;
++-------+-------+-----------------+
+| regno | name  | completedcourse |
++-------+-------+-----------------+
+|   124 | chay  |              14 |
+|   126 | yash  |              16 |
+|   127 | vivek |              16 |
++-------+-------+-----------------+
+3 rows in set (0.00 sec)
+
+mysql>
