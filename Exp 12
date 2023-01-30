@@ -1,0 +1,55 @@
+mysql> use student;
+Database changed
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE RepeatExample()
+    -> BEGIN
+    ->    DECLARE val INT;
+    ->    DECLARE squares INT;
+    ->    DECLARE res VARCHAR(100);
+    ->    SET val=1;
+    ->    SET squares=1;
+    ->    SET res = '';
+    ->    REPEAT
+    ->       SET squares = val*val;
+    ->       SET res = CONCAT(res, squares,',');
+    ->       SET val = val + 1;
+    ->    UNTIL val >= 10
+    ->    END REPEAT;
+    ->    SELECT res;
+    -> END//
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql> CALL RepeatExample; //
++--------------------------+
+| res                      |
++--------------------------+
+| 1,4,9,16,25,36,49,64,81, |
++--------------------------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.03 sec)
+mysql> use student;
+Database changed
+mysql> delimiter //
+mysql> CREATE PROCEDURE while_loop()
+    ->    BEGIN
+    ->       DECLARE num INT default 1;
+    ->       DECLARE res Varchar(50) default '';
+    ->       WHILE num < 78125 DO
+    ->          SET res = CONCAT(res,num,',');
+    ->          SET num = num*5;
+    ->       END While;
+    ->       SELECT res;
+    ->    END //
+
+Query OK, 0 rows affected (0.03 sec)
+mysql> call while_loop;
++----------------------------+
+| res                        |
++----------------------------+
+| 1,5,25,125,625,3125,15625, |
++----------------------------+
+1 row in set (0.00 sec)
+Query OK, 0 rows affected (0.01 sec)
