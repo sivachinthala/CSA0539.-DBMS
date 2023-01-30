@@ -1,0 +1,103 @@
+mysql> use cstudents;
+Database changed
+mysql> desc cstudents;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int         | YES  |     | NULL    |       |
+| name       | varchar(15) | YES  |     | NULL    |       |
+| gender     | varchar(1)  | YES  |     | NULL    |       |
+| dob        | date        | YES  |     | NULL    |       |
+| mobileno   | int         | YES  |     | NULL    |       |
+| department | varchar(25) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from cstudents;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
+|   156 | anjali  | F      | 2002-12-04 | 630177802 | CSE        |
+|   163 | yash    | M      | 2003-11-06 | 903591664 | ML         |
+|   456 | anirudh | M      | 2002-11-07 | 772980390 | cse        |
++-------+---------+--------+------------+-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select regno,name,department from cstudents order by dob;
++-------+---------+------------+
+| regno | name    | department |
++-------+---------+------------+
+|   456 | anirudh | cse        |
+|   156 | anjali  | CSE        |
+|   235 | chay    | IT         |
+|   163 | yash    | ML         |
+|   246 | bindhu  | DS         |
+|   234 | Hansika | cse        |
++-------+---------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select regno,name,gender from cstudents order by regno;
++-------+---------+--------+
+| regno | name    | gender |
++-------+---------+--------+
+|   156 | anjali  | F      |
+|   163 | yash    | M      |
+|   234 | Hansika | F      |
+|   235 | chay    | M      |
+|   246 | bindhu  | F      |
+|   456 | anirudh | M      |
++-------+---------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from mark;
++-------+---------+-------+
+| regno | name    | marks |
++-------+---------+-------+
+|   234 | hansika |    90 |
+|   235 | chay    |    92 |
+|   234 | hansika |    90 |
+|   246 | chay    |    92 |
+|   235 | bindhu  |    94 |
++-------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select name,marks from mark order by marks;
++---------+-------+
+| name    | marks |
++---------+-------+
+| hansika |    90 |
+| hansika |    90 |
+| chay    |    92 |
+| chay    |    92 |
+| bindhu  |    94 |
++---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select count(name) from cstudents;
++-------------+
+| count(name) |
++-------------+
+|           6 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(name),regno from cstudents
+    -> group by regno having count(name)>0;
++-------------+-------+
+| count(name) | regno |
++-------------+-------+
+|           1 |   234 |
+|           1 |   235 |
+|           1 |   246 |
+|           1 |   156 |
+|           1 |   163 |
+|           1 |   456 |
++-------------+-------+
+6 rows in set (0.00 sec)
+
+mysql>
+0 comments on commit 617a717
+Please sign in to comment.
