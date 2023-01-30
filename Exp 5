@@ -1,0 +1,137 @@
+[8:33 am, 30/01/2023] ~Bhavana Reddy: mysql> use cstudents;
+Database changed
+mysql> desc students;
+ERROR 1146 (42S02): Table 'cstudents.students' doesn't exist
+mysql> desc cstudents;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int         | YES  |     | NULL    |       |
+| name       | varchar(15) | YES  |     | NULL    |       |
+| gender     | varchar(1)  | YES  |     | NULL    |       |
+| dob        | date        | YES  |     | NULL    |       |
+| mobileno   | int         | YES  |     | NULL    |       |
+| department | varchar(25) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from cstudents;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
+|   156 | anjali  | F      | 2002-12-04 | 630177802 | CSE        |
+|   163 | yash    | M      | 2003-11-06 | 903591664 | ML         |
+|   456 | anirudh | M      | 2002-11-07 | 772980390 | cse        |
++-------+---------+--------+------------+-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from cstudents where regno='456';
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   456 | anirudh | M      | 2002-11-07 | 772980390 | cse        |
++-------+---------+--------+------------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from cstudents where regno between 234 and 246;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
++-------+---------+--------+------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> desc mark;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| regno | int         | YES  |     | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| marks | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into cstudents values('234','hansika','90'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into cstudents values('234','hansika','90');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into mark values('234','hansika','90');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into mark values('246','chay','92');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mark values('235','bindhu','94');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from mark;
++-------+---------+-------+
+| regno | name    | marks |
++-------+---------+-------+
+|   234 | hansika |    90 |
+|   235 | chay    |    92 |
+|   234 | hansika |    90 |
+|   246 | chay    |    92 |
+|   235 | bindhu  |    94 |
++-------+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select avg(marks) from mark;
++------------+
+| avg(marks) |
++------------+
+|    91.6000 |
++------------+
+1 row in set (0.01 sec)
+
+mysql> select max(marks) from mark;
++------------+
+| max(marks) |
++------------+
+|         94 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select min(marks) from mark;
++------------+
+| min(marks) |
++------------+
+|         90 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) from mark;
++------------+
+| sum(marks) |
++------------+
+|        458 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from cstudents where name LIKE '%ay';
++-------+------+--------+------------+-----------+------------+
+| regno | name | gender | dob        | mobileno  | department |
++-------+------+--------+------------+-----------+------------+
+|   235 | chay | M      | 2003-02-10 | 830939294 | IT         |
++-------+------+--------+------------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from cstudents where name LIKE '%ya';
+Empty set (0.00 sec)
+
+mysql> select * from cstudents where name LIKE 'ya%';
++-------+------+--------+------------+-----------+------------+
+| regno | name | gender | dob        | mobileno  | department |
++-------+------+--------+------------+-----------+------------+
+|   163 | yash | M      | 2003-11-06 | 903591664 | ML         |
++-------+------+--------+------------+-----------+------------+
+1 row in set (0.00 sec)
+
+mysql>
+0 comments on commit 134bd80
+Please sign in to comment.
