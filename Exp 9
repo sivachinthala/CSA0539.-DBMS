@@ -1,0 +1,77 @@
+mysql> use course;
+Database changed
+mysql> select * from course;
++-------+---------+-------------+-----------------+---------+
+| regno | name    | totalcourse | completedcourse | arrears |
++-------+---------+-------------+-----------------+---------+
+|   123 | hansika |          38 |              14 |       0 |
+|   124 | chay    |          38 |              14 |       1 |
+|   125 | sravs   |          38 |              15 |       0 |
+|   126 | yash    |          38 |              16 |       2 |
+|   127 | vivek   |          38 |              16 |       1 |
++-------+---------+-------------+-----------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> create table details(regno int(3),doj date);
+ERROR 1050 (42S01): Table 'details' already exists
+mysql> desc details;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| regno | int         | YES  |     | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| doj   | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into details values('125','sravs','2021-09-05');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into dwetails values('126','yash','2021-08-05');
+ERROR 1146 (42S02): Table 'course.dwetails' doesn't exist
+mysql> insert into details values('126','yash','2021-08-05');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into details values('127','vivek','2021-08-04');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> desc details;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| regno | int         | YES  |     | NULL    |       |
+| name  | varchar(15) | YES  |     | NULL    |       |
+| doj   | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select * from details;
++-------+---------+------------+
+| regno | name    | doj        |
++-------+---------+------------+
+|   123 | hansika | 2021-09-02 |
+|   124 | chay    | 2021-08-01 |
+|   125 | sravs   | 2021-09-05 |
+|   126 | yash    | 2021-08-05 |
+|   127 | vivek   | 2021-08-04 |
++-------+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> select course.regno,details.doj,data completedcourse
+    -> from course
+    -> inner join data on details.regno=course.regno;
+ERROR 1146 (42S02): Table 'course.data' doesn't exist
+mysql> select details.regno,course.name,details.doj from details
+    -> inner join course on details.regno=course.regno;
++-------+---------+------------+
+| regno | name    | doj        |
++-------+---------+------------+
+|   123 | hansika | 2021-09-02 |
+|   124 | chay    | 2021-08-01 |
+|   125 | sravs   | 2021-09-05 |
+|   126 | yash    | 2021-08-05 |
+|   127 | vivek   | 2021-08-04 |
++-------+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql>
