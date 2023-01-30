@@ -1,0 +1,103 @@
+mysql> use cstudents;
+Database changed
+mysql> desc cstudents;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int         | YES  |     | NULL    |       |
+| name       | varchar(15) | YES  |     | NULL    |       |
+| gender     | varchar(1)  | YES  |     | NULL    |       |
+| dob        | date        | YES  |     | NULL    |       |
+| mobileno   | int         | YES  |     | NULL    |       |
+| department | varchar(25) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select * from cstudents;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
+|   156 | anjali  | F      | 2002-12-04 | 630177802 | CSE        |
+|   163 | yash    | M      | 2003-11-06 | 903591664 | ML         |
+|   456 | anirudh | M      | 2002-11-07 | 772980390 | cse        |
++-------+---------+--------+------------+-----------+------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from cstudents where regno between 234 and 246;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
++-------+---------+--------+------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from mark where marks between 90 and 92;
++-------+---------+-------+
+| regno | name    | marks |
++-------+---------+-------+
+|   234 | hansika |    90 |
+|   235 | chay    |    92 |
+|   234 | hansika |    90 |
+|   246 | chay    |    92 |
++-------+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select count(name) from cstudents;
++-------------+
+| count(name) |
++-------------+
+|           6 |
++-------------+
+1 row in set (0.00 sec)
+
+mysql> select count(name),regno from cstudents
+    -> group by regno having count(name)>0;
++-------------+-------+
+| count(name) | regno |
++-------------+-------+
+|           1 |   234 |
+|           1 |   235 |
+|           1 |   246 |
+|           1 |   156 |
+|           1 |   163 |
+|           1 |   456 |
++-------------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select avg(marks) from mark;
++------------+
+| avg(marks) |
++------------+
+|    91.6000 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) from marks;
+ERROR 1146 (42S02): Table 'cstudents.marks' doesn't exist
+mysql> select sum(marks) from mark;
++------------+
+| sum(marks) |
++------------+
+|        458 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select * from cstudents where gender in ('F');
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
+|   156 | anjali  | F      | 2002-12-04 | 630177802 | CSE        |
++-------+---------+--------+------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql>
+
+0 comments on commit 4706c5c
+Please sign in to comment.
