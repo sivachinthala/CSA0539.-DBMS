@@ -1,0 +1,88 @@
+mysql> use cstudents;
+Database changed
+mysql> describe cstudents;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int         | YES  |     | NULL    |       |
+| name       | varchar(15) | YES  |     | NULL    |       |
+| gender     | varchar(1)  | YES  |     | NULL    |       |
+| dob        | date        | YES  |     | NULL    |       |
+| mobileno   | int         | YES  |     | NULL    |       |
+| department | varchar(25) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into cstudents('456','anirudh','M','2002-11-07','772980390','cse');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''456','anirudh','M','2002-11-07','772980390','cse')' at line 1
+mysql> insert into cstudents value('456','anirudh','M','2002-11-07','772980390','cse');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into cstudents value('344','geetha','F','2003-08-06','918243658','ml');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * from cstudents;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
+|   156 | archana | F      | 2002-12-04 | 630177802 | CSE        |
+|   163 | yash    | M      | 2003-11-06 | 903591664 | ML         |
+|   456 | anirudh | M      | 2002-11-07 | 772980390 | cse        |
+|   344 | geetha  | F      | 2003-08-06 | 918243658 | ml         |
++-------+---------+--------+------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> update cstudents set regno='156' where name='anjali';
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+mysql> select * from cstudents;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
+|   156 | archana | F      | 2002-12-04 | 630177802 | CSE        |
+|   163 | yash    | M      | 2003-11-06 | 903591664 | ML         |
+|   456 | anirudh | M      | 2002-11-07 | 772980390 | cse        |
+|   344 | geetha  | F      | 2003-08-06 | 918243658 | ml         |
++-------+---------+--------+------------+-----------+------------+
+7 rows in set (0.00 sec)
+
+mysql> update cstudents set name='anjali' where regno='156';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from cstudents;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
+|   156 | anjali  | F      | 2002-12-04 | 630177802 | CSE        |
+|   163 | yash    | M      | 2003-11-06 | 903591664 | ML         |
+|   456 | anirudh | M      | 2002-11-07 | 772980390 | cse        |
+|   344 | geetha  | F      | 2003-08-06 | 918243658 | ml         |
++-------+---------+--------+--…
+7 rows in set (0.00 sec)
+
+mysql> delete from cstudents where name='geetha';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from cstudents;
++-------+---------+--------+------------+-----------+------------+
+| regno | name    | gender | dob        | mobileno  | department |
++-------+---------+--------+------------+-----------+------------+
+|   234 | Hansika | F      | 2004-09-08 |   7729804 | cse        |
+|   235 | chay    | M      | 2003-02-10 | 830939294 | IT         |
+|   246 | bindhu  | F      | 2004-01-07 | 995100148 | DS         |
+|   156 | anjali  | F      | 2002-12-04 | 630177802 | CSE        |
+|   163 | yash    | M      | 2003-11-06 | 903591664 | ML         |
+|   456 | anirudh | M      | 2002-11-07 | 772980390 | cse        |
++-------+---------+--------+------------+-----------+------------+
+6 rows in set (0.00 sec)
+mysql>
