@@ -1,0 +1,60 @@
+mysql> use course;
+Database changed
+mysql> select * from course;
++-------+---------+-------------+-----------------+---------+
+| regno | name    | totalcourse | completedcourse | arrears |
++-------+---------+-------------+-----------------+---------+
+|   123 | hansika |          38 |              14 |       0 |
+|   124 | chay    |          38 |              14 |       1 |
+|   125 | sravs   |          38 |              15 |       0 |
+|   126 | yash    |          38 |              16 |       2 |
+|   127 | vivek   |          38 |              16 |       1 |
++-------+---------+-------------+-----------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from details;
++-------+---------+------------+
+| regno | name    | doj        |
++-------+---------+------------+
+|   123 | hansika | 2021-09-02 |
+|   124 | chay    | 2021-08-01 |
+|   125 | sravs   | 2021-09-05 |
+|   126 | yash    | 2021-08-05 |
+|   127 | vivek   | 2021-08-04 |
++-------+---------+------------+
+5 rows in set (0.00 sec)
+
+mysql> create view dojdetails as select regno,arrears from course doj by regno;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by regno' at line 1
+mysql> create view studentdetails as select name,completedcourse from course order by name;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from studentdetails;
++---------+-----------------+
+| name    | completedcourse |
++---------+-----------------+
+| chay    |              14 |
+| hansika |              14 |
+| sravs   |              15 |
+| vivek   |              16 |
+| yash    |              16 |
++---------+-----------------+
+5 rows in set (0.01 sec)
+
+mysql> create index studentid on course(regno);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from course;
++-------+---------+-------------+-----------------+---------+
+| regno | name    | totalcourse | completedcourse | arrears |
++-------+---------+-------------+-----------------+---------+
+|   123 | hansika |          38 |              14 |       0 |
+|   124 | chay    |          38 |              14 |       1 |
+|   125 | sravs   |          38 |              15 |       0 |
+|   126 | yash    |          38 |              16 |       2 |
+|   127 | vivek   |          38 |              16 |       1 |
++-------+---------+-------------+-----------------+---------+
+5 rows in set (0.00 sec)
+
+mysql>
