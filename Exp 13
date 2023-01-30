@@ -1,0 +1,83 @@
+mysql> create database shopping;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use shopping;
+Database changed
+mysql> create table shopping(customer varchar(15),product varchar(15),size varchar(3),delivery_date date);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc shopping;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| customer      | varchar(15) | YES  |     | NULL    |       |
+| product       | varchar(15) | YES  |     | NULL    |       |
+| size          | varchar(3)  | YES  |     | NULL    |       |
+| delivery_date | date        | YES  |     | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into shopping values('varshitha','kurti','M','2023-02-28');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shopping values('anuja','shirt','S','2023-02-03');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shopping values('chay','jeans','L','2023-02-13');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into shopping values('yash','tshirt','XL','2023-02-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from shopping ;
++-----------+---------+------+---------------+
+| customer  | product | size | delivery_date |
++-----------+---------+------+---------------+
+| varshitha | kurti   | M    | 2023-02-28    |
+| anuja     | shirt   | S    | 2023-02-03    |
+| chay      | jeans   | L    | 2023-02-13    |
+| yash      | tshirt  | XL   | 2023-02-09    |
++-----------+---------+------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from shopping;
++-----------+---------+------+---------------+
+| customer  | product | size | delivery_date |
++-----------+---------+------+---------------+
+| varshitha | kurti   | M    | 2023-02-28    |
+| anuja     | shirt   | S    | 2023-02-03    |
+| chay      | jeans   | L    | 2023-02-13    |
+| yash      | tshirt  | XL   | 2023-02-09    |
++-----------+---------+------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from shopping where customer='anuja';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from shopping;
++-----------+---------+------+---------------+
+| customer  | product | size | delivery_date |
++-----------+---------+------+---------------+
+| varshitha | kurti   | M    | 2023-02-28    |
+| chay      | jeans   | L    | 2023-02-13    |
+| yash      | tshirt  | XL   | 2023-02-09    |
++-----------+---------+------+---------------+
+3 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from shopping;
++-----------+---------+------+---------------+
+| customer  | product | size | delivery_date |
++-----------+---------+------+---------------+
+| varshitha | kurti   | M    | 2023-02-28    |
+| chay      | jeans   | L    | 2023-02-13    |
+| yash      | tshirt  | XL   | 2023-02-09    |
++-----------+---------+------+---------------+
+3 rows in set (0.00 sec)
+
+mysql>
